@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>Registration</title>
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        function register(){
+            $.ajax({
+                url:"/register",
+                type:'POST',
+                data:{'name':$("#una").val(),'phone':$("#phone").val(),'password':$("#pass")},
+                success:function (res){
+                    if (res=="注册成功"){
+                        alert("成功")
+                        window.location="http://localhost:9090/test"
+                    }else {
+                        alert("失败");
+                    }
+                },
+                error:function (res){
+                    alert("error");
+                }
+
+            });
+            return false;
+        }
+    </script>
+</head>
+
+<body class="login-body">
+
+<div class="container">
+
+    <form class="form-signin" method="post">
+        <div class="form-signin-heading text-center">
+            <h1 class="sign-title">新用户注册</h1>
+            <img src="../resources/images/login-logo.png" alt=""/>
+        </div>
+        <div class="login-wrap">
+            <input type="text" autofocus=""id="uname" onmouseout="checkUname()" placeholder="用户名" class="form-control">
+            <div class="warn" id="UserTip"></div>
+            <input type="text" autofocus=""id="pass" onmouseout="checkUname()" placeholder="手机号" class="form-control">
+<!--            <div class="warn" id="UserTip"></div>-->
+<!--			 &nbsp;<input type="text" name="Verification Code" placeholder="验证码" >-->
+<!--			<button class="btn btn-primary" type="button">获取验证码</button>-->
+			 <!-- 调用腾讯服务器的手机验证码服务-->
+            <input type="password" id="password"onmouseout="checkPwd()" placeholder="密码要求6-8位，首位为字母，后面5-7位是数字" class="form-control">
+            <div class="warn" id="PasswordTip"></div>
+            <input type="password"id="password2" onmouseout="checkPwd2()" placeholder="确认密码" class="form-control">
+            <div class="warn" id="PasswordTip1"></div>
+            <label class="checkbox">
+                <input type="checkbox" value="agree this condition"> 我同意服务条款和隐私政策
+            </label>
+            <button onmouseout="checkSub()" type="submit" class="btn btn-lg btn-login btn-block" onclick="register">
+                <i class="fa fa-check"></i>
+            </button>
+			 <!-- 添加方法判断注册是否成功 -->
+            <div class="registration">
+                已经注册。
+                <a href="login.html" class="">
+                    去登陆
+                </a>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+<script>
+    function checkUname(){
+        //获取用户获得用户名信息
+        var uname=document.getElementById("uname").value;
+        //创建校验规则,用户名2-4个
+        var reg=/^[\u4e00-\u9fa5]{2,4}$/
+        //获取span对象
+        var UserTip=document.getElementById("UserTip");
+        //开始交验
+        if(uname==""||uname==null){
+            //输入校验结果
+            UserTip.innerHTML="*用户名不能为空";
+            UserTip.style.color="red";
+            return false;
+        }else if(reg.test(uname)){
+            //输入校验结果
+            UserTip.innerHTML="*用户名通过";
+            UserTip.style.color="green";
+            return true;
+        }else{
+            //输入校验结果
+            UserTip.innerHTML="*用户名格式不符"
+            UserTip.style.color="red";
+            return false;
+        }
+    }
+    function checkPwd(){
+        //获取用户获得用户名信息
+        var password=document.getElementById("password").value;
+        //创建校验规则,密码要求6-8位，首位为字母，后面5-7位是数字
+        var reg=/^[a-z]\w{5,7}$/;
+        //获取span对象
+        var PasswordTip=document.getElementById("PasswordTip");
+        //开始交验
+        if(password==""||password==null){
+            //输入校验结果
+            PasswordTip.innerHTML="*密码不能为空";
+            PasswordTip.style.color="red";
+            return false;
+        }else if(reg.test(password)){
+            //输入校验结果
+            PasswordTip.innerHTML="*密码通过";
+            PasswordTip.style.color="green";
+            return true;
+        }else{
+            //输入校验结果
+            PasswordTip.innerHTML="*密码格式不符"
+            PasswordTip.style.color="red";
+            return false;
+        }
+        //第一次密码为a123456，第二次密码为a1234567，则修改的第一次密码，确认密码也会重新校验
+        checkPwd2();
+    }
+    function checkPwd2() {
+        //获取第一次校验密码
+        var pwd=document.getElementById("password").value;
+        //获取确认密码
+        var pwd2=document.getElementById("password2").value;
+        //获取span对象
+        var PasswordTip1=document.getElementById("PasswordTip1");
+        //比较前两次密码是否相同
+        if( pwd2==""|| pwd2==null){
+            //输入校验结果
+            PasswordTip1.innerHTML="*密码不能为空";
+            PasswordTip1.style.color="red";
+            return false;
+        }else if(pwd===pwd2){
+            //输入校验结果
+            PasswordTip1.innerHTML="*密码通过";
+            PasswordTip1.style.color="green";
+            return true;
+        }else{
+            //输入校验结果
+            PasswordTip1.innerHTML="*密码不同，请重新输入"
+            PasswordTip1.style.color="red";
+            return false;
+        }
+    }
+    function checkSub(){
+        if (checkUname()&& checkPwd()&& checkPwd2())
+        {
+            return alert("恭喜注册成功！");
+        }
+    }
+</script>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="../resources/js/jquery-1.10.2.min.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
+<script src="../resources/js/modernizr.min.js"></script>
+
+</body>
+</html>
