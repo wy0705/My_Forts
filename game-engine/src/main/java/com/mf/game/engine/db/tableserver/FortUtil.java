@@ -1,7 +1,8 @@
 package com.mf.game.engine.db.tableserver;
 
-import com.mf.game.engine.db.Contans;
-import com.mf.game.engine.db.HbaseUtil;
+
+import com.mf.game.engine.db.hbase.HbaseUtil;
+import com.mf.game.engine.util.Contans;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
@@ -49,7 +50,7 @@ public class FortUtil extends HbaseUtil {
 
     }
 
-    @Override
+    /*@Override
     public void getData(String tbname, String FortId) throws IOException {
 
 //        Table table = null;
@@ -76,7 +77,7 @@ public class FortUtil extends HbaseUtil {
 //                e.printStackTrace();
 //            }
 //        }
-    }
+    }*/
 
     //装备表分页
 

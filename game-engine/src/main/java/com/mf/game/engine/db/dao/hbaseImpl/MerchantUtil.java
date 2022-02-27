@@ -22,6 +22,7 @@ public class MerchantUtil extends HbaseUtil {
         long id=HbaseUtil.getId(Contans.MERCHANT_TABLE,"info","Mer_id","Merid");
         System.out.println(id);
         Table table=HbaseUtil.getConn().getTable(TableName.valueOf(Contans.MERCHANT_TABLE));
+        return merchant;
     }
     @Override
     public void insertData(String tbname, String MC_id, String family, String qualifier, String value) {

@@ -1,7 +1,8 @@
 package com.mf.game.engine.db.tableserver;
 
-import com.mf.game.engine.db.Contans;
-import com.mf.game.engine.db.HbaseUtil;
+
+import com.mf.game.engine.db.hbase.HbaseUtil;
+import com.mf.game.engine.util.Contans;
 import org.apache.hadoop.hbase.TableName;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class UserEquip extends HbaseUtil {
         super.insertData(tbname, rowKey, family, qualifier, value);
     }
 
-    @Override
+   /* @Override
     public void getData(String tbname, String rowKey) throws IOException {
 
     }
@@ -23,5 +24,5 @@ public class UserEquip extends HbaseUtil {
     @Override
     public void queryAll(String tbname) {
         TableName tableName = TableName.valueOf(Contans.USER_EQUIP_TABLE);
-    }
+    }*/
 }

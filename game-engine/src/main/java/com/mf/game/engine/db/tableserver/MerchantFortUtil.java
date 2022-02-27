@@ -1,6 +1,7 @@
 package com.mf.game.engine.db.tableserver;
 
-import com.mf.game.engine.db.HbaseUtil;
+
+import com.mf.game.engine.db.hbase.HbaseUtil;
 
 public class MerchantFortUtil extends HbaseUtil {
 //    商户购买堡垒时添加一条数据

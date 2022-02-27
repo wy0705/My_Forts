@@ -1,6 +1,7 @@
 package com.mf.game.engine.db.tableserver;
 
-import com.mf.game.engine.db.HbaseUtil;
+
+import com.mf.game.engine.db.hbase.HbaseUtil;
 
 public class UserAttackUtil extends HbaseUtil {
 //    当用户购买装备时在，用户装备表添加数据，对应的用户ID添加装备id,

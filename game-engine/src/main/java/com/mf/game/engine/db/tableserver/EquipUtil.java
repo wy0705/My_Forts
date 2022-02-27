@@ -1,7 +1,8 @@
 package com.mf.game.engine.db.tableserver;
 
-import com.mf.game.engine.db.Contans;
-import com.mf.game.engine.db.HbaseUtil;
+
+import com.mf.game.engine.db.hbase.HbaseUtil;
+import com.mf.game.engine.util.Contans;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;

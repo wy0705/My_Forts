@@ -1,7 +1,8 @@
 package com.mf.game.engine.db.tableserver;
 
-import com.mf.game.engine.db.Contans;
-import com.mf.game.engine.db.HbaseUtil;
+
+import com.mf.game.engine.db.hbase.HbaseUtil;
+import com.mf.game.engine.util.Contans;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
@@ -85,7 +86,7 @@ public class UserUtil extends HbaseUtil {
 
 
     //查找数据
-    @Override
+   /* @Override
     public void getData(String tbname, String userid) throws IOException {
 //        super.getData(tbname, rowKey);
         Table table = null;
@@ -112,5 +113,5 @@ public class UserUtil extends HbaseUtil {
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 }

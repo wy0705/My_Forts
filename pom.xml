@@ -4,6 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <!--        <artifactId>spring-boot-starter-websocket</artifactId>-->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.1.RELEASE</version>
+    </parent>
     <groupId>org.example</groupId>
     <artifactId>My_Forts</artifactId>
     <packaging>pom</packaging>
@@ -30,6 +36,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+
         </dependency>
         <dependency>
             <groupId>org.apache.hbase</groupId>
@@ -42,6 +49,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-auth</artifactId>
@@ -62,9 +70,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-        <!--
-         https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
-        -->
+        <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
@@ -76,17 +82,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.16</version>
         </dependency>
-        <!--
-         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
-        -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>2.4.5</version>
         </dependency>
-        <!--
-         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-        -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -113,10 +115,9 @@
             <artifactId>jquery</artifactId>
             <version>3.2.1</version>
         </dependency>
+
         <!--elasticsearch-->
-        <!--
-         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-elasticsearch
-        -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-elasticsearch -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
@@ -125,6 +126,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -137,6 +139,7 @@
             <version>1.0.6</version>
         </dependency>
     </dependencies>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
