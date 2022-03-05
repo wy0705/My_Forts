@@ -1,44 +1,259 @@
 <html>
 <head>
     <title>我的城池营垒地图</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=eRk1USGm4cG6fCqBIcR8XRIBV7Bg94yY"></script>
-    <link rel="stylesheet" href="css/map1.css">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript"
+            src="https://api.map.baidu.com/api?v=3.0&ak=eRk1USGm4cG6fCqBIcR8XRIBV7Bg94yY"></script>
+    <link rel="stylesheet" href="../css/map1.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <style>
+        .userMenu {
+            border: 1px solid black;
+            height: 600px;
+            width: 5%;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+
+        .userMenu li button {
+            cursor: pointer;
+            width: 83px;
+            height: 25px;
+            margin-bottom: 3px;
+        }
+
+        #center_right {
+            height: 600px;
+            width: 94%;
+            border: 1px solid black;
+            float: right;
+        }
+        img{
+            margin: 2px;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+    <script>
+        function openPackage() {
+            $("#map").css('display', 'none');
+            $("#shop").css('display', 'none');
+            $("#package").css('display', 'block');
+            $("#data").css('display', 'none');
+        }
+
+        function packageReturn() {
+            $("#package").css('display', 'none');
+            $("#map").css('display', 'block');
+            $("#shop").css('display', 'none');
+            $("#data").css('display', 'none');
+        }
+
+        function openShop(){
+            $("#map").css('display', 'none');
+            $("#package").css('display', 'none');
+            $("#shop").css('display', 'block');
+            $("#data").css('display', 'none');
+        }
+
+        function shopReturn() {
+            $("#shop").css('display', 'none');
+            $("#map").css('display', 'block');
+            $("#package").css('display', 'none');
+            $("#data").css('display', 'none');
+        }
+
+        function openData(){
+            $("#shop").css('display', 'none');
+            $("#data").css('display', 'block');
+            $("#package").css('display', 'none');
+            $("#map").css('display', 'none');
+        }
+
+        function dataReturn(){
+            $("#shop").css('display', 'none');
+            $("#map").css('display', 'block');
+            $("#package").css('display', 'none');
+            $("#data").css('display', 'none');
+        }
+
+        function all1(){
+            $("#all").css('display','block');
+            $("#wyy").css('display','none');
+            $("#yyy").css('display','none');
+        }
+
+        function wyy1(){
+            $("#all").css('display','none');
+            $("#wyy").css('display','block');
+            $("#yyy").css('display','none');
+        }
+
+        function yyy1(){
+            $("#all").css('display','none');
+            $("#wyy").css('display','none');
+            $("#yyy").css('display','block');
+        }
+    </script>
 </head>
 <body>
-<div id="foot">
-    <button type="button"><a href="../client/login.html">注销账号</a></button>
-    <button type="button"><a href="../knapsack/package.html">背包</a></button>
-    <button type="button"><a href="../Shop/Shop1.html">商店</a></button>
+<div id="map">
+    <div id="foot">
+        <button type="button"><a href="../client/login.html">注销账号</a></button>
+        <button type="submit" onclick="openPackage()">背包</button>
+        <button type="button" onclick="openShop()">商店</button>
+    </div>
+    <div id="container"></div>
+    <div id="botton">
+        <button type="button" onclick="openData()">我的战力</button>
+        <button type="button"><a>选择攻击目标</a></button>
+    </div>
+    <script>
+        // var map = new BMap.Map("container");          // 创建地图实例
+        // var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+        // map.centerAndZoom(point, 17);// 初始化地图，设置中心点坐标和地图级别
+        var map = new BMap.Map("container");
+        var point = new BMap.Point(116.331398, 39.897445);
+        map.centerAndZoom(point, 12);
+        <!--    var geolocation = new BMap.Geolocation();-->
+        <!--    geolocation.getCurrentPosition(function(r){-->
+        <!--        if(this.getStatus() == BMAP_STATUS_SUCCESS){-->
+        <!--            var mk = new BMap.Marker(r.point);-->
+        <!--            map.addOverlay(mk);-->
+        <!--            map.panTo(r.point);-->
+        <!--            alert('您的位置：'+r.point.lng+','+r.point.lat);-->
+        <!--        }-->
+        <!--        else {-->
+        <!--            alert('failed'+this.getStatus());-->
+        <!--        }-->
+        // <!--    });-->
+        // // <!--    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放-->
+        // <!--    map.addControl(new BMap.NavigationControl());-->
+        // <!--    map.addControl(new BMap.OverviewMapControl());-->
+    </script>
+
 </div>
-<div id="container"></div>
-<div id="botton">
-    <button type="button"><a href="../echarts/My_fighting_power.html">我的战力</a></button>
-    <button type="button"><a>选择攻击目标</a></button>
+<div id="package" style="display: none">
+    <div><span>我的背包</span>
+
+    </div>
+    <br>
+    <div id="center">
+        <a href="../knapsack/attribute2.html"><img id="zbimg" src="../image/2.jpg" alt="无尽战刃"></a>
+        <a href="../knapsack/attribute3.html"><img src="../image/3.jpg" alt="泣血之刃"></a>
+        <a href="../knapsack/attribute4.html"><img src="../image/4.jpg" alt="宗师之力"></a>
+        <a href="../knapsack/attribute5.html"><img src="../image/5.jpg" alt="暗影战斧"></a>
+        <a href="../knapsack/attribute6.html"><img src="../image/6.jpg" alt="破军"></a>
+        <a href="../knapsack/attribute2.html"><img src="../image/2.jpg" alt="无尽战刃"></a>
+    </div>
+    <div>
+        <button onclick="packageReturn()">返回</button>
+    </div>
 </div>
-<script>
-    // var map = new BMap.Map("container");          // 创建地图实例
-    // var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
-    // map.centerAndZoom(point, 17);// 初始化地图，设置中心点坐标和地图级别
-    var map = new BMap.Map("container");
-    var point = new BMap.Point(116.331398,39.897445);
-    map.centerAndZoom(point,12);
-<!--    var geolocation = new BMap.Geolocation();-->
-<!--    geolocation.getCurrentPosition(function(r){-->
-<!--        if(this.getStatus() == BMAP_STATUS_SUCCESS){-->
-<!--            var mk = new BMap.Marker(r.point);-->
-<!--            map.addOverlay(mk);-->
-<!--            map.panTo(r.point);-->
-<!--            alert('您的位置：'+r.point.lng+','+r.point.lat);-->
-<!--        }-->
-<!--        else {-->
-<!--            alert('failed'+this.getStatus());-->
-<!--        }-->
-// <!--    });-->
-// // <!--    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放-->
-// <!--    map.addControl(new BMap.NavigationControl());-->
-// <!--    map.addControl(new BMap.OverviewMapControl());-->
-</script>
+
+
+<div id="shop"
+     style="border: 1px solid red;width: 150px;height: 20px;display:inline-block;position: absolute;left: 40%;display: none">
+    <span style="color: #666666;line-height: 20px;margin-left: 40%;">商店</span><br><br>
+    <div class="userWrap" style="height: 600px;width: 100%;border: 1px solid black;">
+        <ul class="userMenu">
+            <li class="current" data-id="center">
+                <button onclick="all1()">全部</button>
+
+            </li>
+            <li data-id="account">
+                <button onclick="yyy1()">已拥有</button>
+            </li>
+            <li data-id="trade">
+                <button onclick="wyy1()">未拥有</button>
+            </li>
+        </ul>
+        <div id="center_right">
+            <div id="all" style="display: block">
+                    <a href="../knapsack/attribute2_buy.html"><img src="../image/2.jpg" alt="无尽战刃"></a>
+                    <a href="../knapsack/attribute3_buy.html"><img src="../image/3.jpg" alt="泣血之刃"></a>
+                    <a href="../knapsack/attribute4_buy.html"><img src="../image/4.jpg" alt="宗师之力"></a>
+                    <a href="../knapsack/attribute5_buy.html"><img src="../image/5.jpg" alt="暗影战斧"></a>
+                    <a href="../knapsack/attribute6_buy.html"><img src="../image/6.jpg" alt="破军"></a>
+                    <a href="../knapsack/attribute2.html"><img src="../image/2.jpg" alt="无尽战刃"></a>
+            </div>
+            <div id="yyy" style="display: none">
+                <a href="../knapsack/attribute2.html"><img src="../image/2.jpg" alt="无尽战刃"></a>
+                <!--    <a href="../knapsack/attribute3.html"><img src="../image/3.jpg" alt="泣血之刃"></a>-->
+                <!--    <a href="../knapsack/attribute4.html"><img src="../image/4.jpg" alt="宗师之力"></a>-->
+                <!--    <a href="../knapsack/attribute5.html"><img src="../image/5.jpg" alt="暗影战斧"></a>-->
+                <!--    <a href="../knapsack/attribute6.html"><img src="../image/6.jpg" alt="破军"></a>-->
+                <!--    <a href="../knapsack/attribute2.html"><img src="../image/2.jpg" alt="无尽战刃"></a>-->
+            </div>
+            <div id="wyy" style="display: none">
+                    <!--    <a href="../knapsack/attribute2.html"><img id="zbimg" src="../image/2.jpg" alt="无尽战刃"></a>-->
+                    <a href="../knapsack/attribute3.html"><img src="../image/3.jpg" alt="泣血之刃"></a>
+                    <a href="../knapsack/attribute4.html"><img src="../image/4.jpg" alt="宗师之力"></a>
+                    <a href="../knapsack/attribute5.html"><img src="../image/5.jpg" alt="暗影战斧"></a>
+                    <a href="../knapsack/attribute6.html"><img src="../image/6.jpg" alt="破军"></a>
+                    <!--    <a href="attribute2.html"><img src="../image/2.jpg" alt="无尽战刃"></a>-->
+            </div>
+        </div>
+        <div>
+            <button onclick="shopReturn()">返回</button>
+        </div>
+    </div>
+</div>
+
+<div id="data" style="display: none">
+    <div id="body"style="width: 400px;height: 500px;display: inline-block">
+    </div>
+    <button type="button"style="display: inline-block;float: right;margin-right: 200px;margin-top: 50px">查看排行</button>
+    <button onclick="dataReturn()">返回</button>
+    <script>
+        var myecharts=echarts.init(document.getElementById("body"));
+        var dataMax=[{
+            name:'攻击力',
+            max:100
+        },
+            {
+                name: '防御力',
+                max: 100
+            },{
+                name:'生命力',
+                max:100
+            },{
+                name:'生存力',
+                max:100
+            },{
+                name:'输出',
+                max:100
+            }]
+        var option={
+            title:{
+                text:'战力值显示',
+                textStyle:{
+                    color:'#2e58ff',
+                    fontsize:18
+                }
+            },
+            radar:{
+                indicator:dataMax
+            },
+            series:[
+                {
+                    type:'radar',
+                    data:[
+                        {
+                            name:'我的城堡',
+                            value:[60,30,80,90,88]
+                        }
+                    ]
+                }
+            ]
+        }
+        myecharts.setOption(option);
+    </script>
+</div>
+
 </body>
 </html>
